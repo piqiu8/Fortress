@@ -2,13 +2,13 @@
 
 <div align="center">
   <img alt="LOGO" src="https://github.com/piqiu8/Fortress/blob/master/Assets/Image/fortess_background.png" width="777" height="170" />
-<br>
-<div>
-  <img alt="platform" src="https://img.shields.io/badge/platform-Windows-blue.svg">
-  <img alt="language" src="https://img.shields.io/badge/language-C%23-blueviolet.svg">
-  <img alt="GitHub Release" src="https://img.shields.io/github/v/release/piqiu8/Fortress?logo=unity&color=ff5700">
-</div>
-<br>
+  <br>
+  <div>
+    <img alt="platform" src="https://img.shields.io/badge/platform-Windows-blue.svg">
+    <img alt="language" src="https://img.shields.io/badge/language-C%23-blueviolet.svg">
+    <img alt="GitHub Release" src="https://img.shields.io/github/v/release/piqiu8/Fortress?logo=unity&color=ff5700">
+  </div>
+  <br>
 
 <!-- markdownlint-restore -->
 Fortress为游戏名称
@@ -19,25 +19,40 @@ Fortress为游戏名称
 
 </div>
 
+## 演示图片
+
+<!-- markdownlint-disable -->
+
+<details><summary>图片如下</summary>
+  <picture>
+    <img alt="Readme Image 1" src="https://github.com/piqiu8/Fortress/blob/master/Assets/Image/readme_1.png" width="640" height="360"/>
+  </picture>
+  <picture>
+    <img alt="Readme Image 2" src="https://github.com/piqiu8/Fortress/blob/master/Assets/Image/readme_2.gif" width="640" height="360"/>
+  </picture>
+  <picture>
+    <img alt="Readme Image 3" src="https://github.com/piqiu8/Fortress/blob/master/Assets/Image/readme_3.gif" width="640" height="360"/>
+  </picture>
+  <picture>
+    <img alt="Readme Image 4" src="https://github.com/piqiu8/Fortress/blob/master/Assets/Image/readme_4.gif" width="640" height="360"/>
+  </picture>
+  <picture>
+    <img alt="Readme Image 5" src="https://github.com/piqiu8/Fortress/blob/master/Assets/Image/readme_5.gif" width="640" height="360"/>
+  </picture>
+</details>
+
+<!-- markdownlint-restore -->
+
+## 下载地址
+
+- [完整版](https://github.com/piqiu8/Fortress/releases/tag/V1.0.0)
+
 ## 基本操作
 
 - 移动：WASD按键对应前、右、后、左移动
 - 放置炸弹：F按键
 - 暂停：空格按键，再按一次恢复
 - 确认：回车按键
-
-<!-- markdownlint-disable -->
-
-<details><summary>图片</summary>
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./docs/.vuepress/public/image/zh-cn/readme/1-dark.png">
-  <img alt="zh1" src="./docs/.vuepress/public/image/zh-cn/readme/1-light.png">
-</picture>
-
-</details>
-
-<!-- markdownlint-restore -->
 
 ## 胜利条件
 
@@ -91,7 +106,3 @@ Fortress为游戏名称
 
 - [Easy Mesh Combine Tool](https://assetstore.unity.com/packages/tools/utilities/easy-mesh-combine-tool-211915)：用于合并网格
 - [UnityAssetCleaner](https://github.com/tsubaki/UnityAssetCleaner)：用于清理无用资源
-
-## 下载地址
-
-- [完整版](https://github.com/piqiu8/Fortress/releases/tag/V1.0.0)
