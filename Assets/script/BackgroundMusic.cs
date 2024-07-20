@@ -1,38 +1,84 @@
+//#define DEBUG_MODE
+
 using UnityEngine;
 
-/*
- *功能：实现背景音乐的播放
- *实现方法：通过触发器查看玩家是否达到指定目的地，到达则播放背景音乐
- */
-
+/// <summary>
+/// 实现背景音乐播放
+/// </summary>
 public class BackgroundMusic : MonoBehaviour
 {
+    /// <summary>
+    /// 对应背景音乐
+    /// </summary>
     public AudioClip Music;
-    //创建背景音乐
-    private AudioSource player;
-    //创建音频播放器
-    [HideInInspector]public bool IfBackgroundMusic = false;
-    //用于判断背景音乐是否开启
-    void Start(){
-        player = GetComponent<AudioSource>();
+
+    /// <summary>
+    /// 对应背景音乐播放器
+    /// </summary>
+    private AudioSource BackGroundMusicPlayer;
+
+    /// <summary>
+    /// 背景音乐播放状态，默认为false并在Inspector隐藏
+    /// </summary>
+    [HideInInspector] public bool IfBackgroundMusic = false;
+
+    private void Start()
+    {
         //获取播放器组件
-        player.clip = Music;
+        BackGroundMusicPlayer = GetComponent<AudioSource>();
+#if DEBUG_MODE
+        if (!BackGroundMusicPlayer)
+        {
+            Debug.LogError("未获取到AudioSource组件");
+            return;
+        }
+        if (!BackGroundMusicDeBug())
+        {
+            Debug.LogError("初始化失败");
+            return;
+        }
+#endif
         //设置播放音频为Music
-        player.loop = true;
+        BackGroundMusicPlayer.clip = Music;
         //设置循环播放
-        player.volume = 0.2f;
+        BackGroundMusicPlayer.loop = true;
         //设置音量为0.2倍
+        BackGroundMusicPlayer.volume = 0.2f;
     }
 
-    private void OnTriggerEnter(Collider other){//当玩家触发触发器时
-        if (other.name == "KnightBody"){
-            //若碰撞物体名称为KnightBody
-            if (!player.isPlaying){
-                //若背景音乐为关闭状态
-                IfBackgroundMusic = true;
+    /// <summary>
+    /// 通过触发器播放背景音乐
+    /// </summary>
+    /// <param name="other">碰撞物体信息</param>
+    private void OnTriggerEnter(Collider other)
+    {
+        //若碰撞物体名称为KnightBody
+        if (other.name == "KnightBody")
+        {
+            //若背景音乐为关闭状态
+            if (!BackGroundMusicPlayer.isPlaying)
+            {
                 //将背景音乐状态改为开启，播放背景音乐
-                player.Play();
+                IfBackgroundMusic = true;
+                BackGroundMusicPlayer.Play();
+#if DEBUG_MODE
+                Debug.Log("游戏背景音乐播放状态为"+IfBackgroundMusic);
+#endif
             }
         }
     }
+
+#if DEBUG_MODE
+    /// <summary>
+    /// BackgroundMusic初始化检查
+    /// </summary>
+    /// <returns>初始化状态</returns>
+    private bool BackGroundMusicDeBug()
+    {
+        CheckNull checkNull = gameObject.AddComponent<CheckNull>();
+        checkNull.Check(Music, "Music/背景音乐未初始化");
+        checkNull.Check(BackGroundMusicPlayer, "BackGroundMusicPlayer/背景音乐播放器未初始化");
+        return checkNull.State;
+    }
+#endif
 }
