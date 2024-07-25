@@ -1,28 +1,71 @@
+//#define DEBUG_MODE
+
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 实现图片渐现
+/// </summary>
 public class FadeImage : MonoBehaviour
 {
-    // 定义需要渐变的Image对象
+    /// <summary>
+    /// 需要渐现的image
+    /// </summary>
     private Image image;
-    // 定义渐变颜色
+
+    /// <summary>
+    /// 渐变颜色
+    /// </summary>
     public Gradient gradient;
-    // 定义渐变持续时间
+
+    /// <summary>
+    /// 渐变持续时间，默认为10s
+    /// </summary>
     public float duration = 10f;
-    // 定义计时器
+
+    /// <summary>
+    /// 定时器
+    /// </summary>
     private float timer = 0f;
-    //渐变最终显示的颜色
+
+    /// <summary>
+    /// 渐变最终颜色
+    /// </summary>
     private Color EndColor;
-    //创建一个游戏胜利音效
+
+    /// <summary>
+    /// 游戏胜利音效
+    /// </summary>
     public AudioClip audioClip;
-    //创建一个音频播放器
+
+    /// <summary>
+    /// 音频播放器
+    /// </summary>
     private AudioSource player;
 
-    private void Start(){
+    private void Start()
+    {
         //获取Image组件
-        image=GetComponent<Image>();
+        image = GetComponent<Image>();
         //获取音频播放器
         player = GetComponent<AudioSource>();
+#if DEBUG_MODE
+        if (!image)
+        {
+            Debug.LogError("未获取到image组件");
+            return;
+        }
+        if (!player)
+        {
+            Debug.LogError("未获取到AudioSource组件");
+            return;
+        }
+        if (!FadeImageDeBug())
+        {
+            Debug.LogError("初始化失败");
+            return;
+        }
+#endif
         //播放游戏胜利音效
         player.PlayOneShot(audioClip);
         //创建最终渐变颜色
@@ -31,16 +74,32 @@ public class FadeImage : MonoBehaviour
         gradient.colorKeys = new GradientColorKey[] { new GradientColorKey(image.color, 0f), new GradientColorKey(EndColor, 1f) };
     }
 
-    void Update(){
+    private void Update()
+    {
         // 计算当前渐变进度
         float progress = Mathf.Clamp01(timer / duration);
         // 获取当前渐变颜色
         Color color = gradient.Evaluate(progress);
-        // 将渐变颜色应用到UI Text对象中
+        // 将渐变颜色应用到image中
         image.color = new Color(color.r, color.g, color.b, progress);
         // 更新计时器
         timer += Time.fixedUnscaledDeltaTime;
         // 如果渐变已经完成，停止脚本
         if (progress == 1f) enabled = false;
     }
+
+#if DEBUG_MODE
+    /// <summary>
+    /// FadeImage初始化检查
+    /// </summary>
+    /// <returns>初始化状态</returns>
+    private bool FadeImageDeBug()
+    {
+        CheckNull checkNull=gameObject.AddComponent <CheckNull>();
+        checkNull.Check(image, "image/需要渐现的图片未赋值");
+        checkNull.Check(audioClip, "游戏胜利音效未赋值");
+        checkNull.Check(player, "player/音频播放器未赋值");
+        return checkNull.State;
+    }
+#endif
 }

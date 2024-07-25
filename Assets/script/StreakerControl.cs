@@ -1,20 +1,44 @@
+//#define DEBUG_MODE
+
 using UnityEngine;
 
+/// <summary>
+/// 野人控制脚本
+/// </summary>
 public class StreakerControl : MonoBehaviour
 {
+    /// <summary>
+    /// 玩家物体
+    /// </summary>
     private GameObject player;
-    //创建Streaker与玩家之间的距离
+
+    /// <summary>
+    /// 距玩家的距离
+    /// </summary>
     private float distance;
 
-    void Start(){
+    private void Start()
+    {
         //获取玩家物体
         player = GameObject.FindWithTag("Player");
+#if DEBUG_MODE
+        if (!player)
+        {
+            Debug.LogError("未获取到玩家物体");
+            return;
+        }
+#endif
     }
-    //远离玩家
-    private void AwayPlayer(){
+
+    /// <summary>
+    /// 远离玩家
+    /// </summary>
+    private void AwayPlayer()
+    {
         distance = Vector3.Distance(player.transform.position, transform.position);
-        if (distance < 10){//是否距离小于10m
-            //是
+        //是否距离小于10m
+        if (distance < 10)
+        {
             //获得一个与玩家视线相反的向量
             Vector3 lookDir = transform.position + (transform.position - player.transform.position);
             //使streaker看向这个向量
@@ -23,7 +47,9 @@ public class StreakerControl : MonoBehaviour
             transform.Translate(Vector3.forward * 5f * Time.deltaTime);
         }
     }
-    private void FixedUpdate(){
+
+    private void FixedUpdate()
+    {
         AwayPlayer();
     }
 }
