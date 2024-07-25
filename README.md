@@ -106,3 +106,7 @@ Fortress为游戏名称
 
 - [Easy Mesh Combine Tool](https://assetstore.unity.com/packages/tools/utilities/easy-mesh-combine-tool-211915)：用于合并网格
 - [UnityAssetCleaner](https://github.com/tsubaki/UnityAssetCleaner)：用于清理无用资源
+
+## 存在问题
+
+-  不存在corpse tag：使用工程文件时需手动在tag中添加corpse
