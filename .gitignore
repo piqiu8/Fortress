@@ -1,1 +1,17 @@
+# Unity 自动生成的文件
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Ll]ogs/
+UserSettings/
+
+# Visual Studio自动生成的文件
+*.csproj
+*.unityproj
+*.suo
+*.user
+*.userprefs
+
+# vs配置文件
 .vs/
