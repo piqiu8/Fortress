@@ -6,7 +6,8 @@
   <div>
     <img alt="platform" src="https://img.shields.io/badge/platform-Windows-blue.svg">
     <img alt="language" src="https://img.shields.io/badge/language-C%23-blueviolet.svg">
-    <img alt="GitHub Release" src="https://img.shields.io/github/v/release/piqiu8/Fortress?logo=unity&color=ff5700">
+    <img alt="game engine" src="https://img.shields.io/badge/engine-unity-white?logo=unity">
+    <img alt="GitHub Release" src="https://img.shields.io/github/v/release/piqiu8/Fortress?color=ff5700">
   </div>
   <br>
 
@@ -110,3 +111,4 @@ Fortress为游戏名称
 ## 存在问题
 
 -  不存在corpse tag：使用工程文件时需手动在tag中添加corpse
+- 因Fortress-master\Assets中的Scenes文件大小超过git上传限制，使用LFS又有点浪费，因此把[Scenes](https://github.com/piqiu8/Fortress/releases/tag/project-file)文件放在releases中，需要完整工程文件的请前往下载，不下载的话工程文件会报错！
